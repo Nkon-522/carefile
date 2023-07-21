@@ -2,6 +2,10 @@ import pg from "pg";
 const {Pool} = pg;
 
 pg.types.setTypeParser(20, parseInt);
+pg.types.setTypeParser(1700, parseFloat);
+pg.types.setTypeParser(1082, function(stringValue) {
+    return stringValue;  
+});
 
 const DB = process.env.DB;
 const DB_USER = process.env.DB_USER;
