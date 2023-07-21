@@ -1,8 +1,5 @@
 import pg from "pg";
 const {Pool} = pg;
-import dotenv from "dotenv";
-
-dotenv.config();
 
 pg.types.setTypeParser(20, parseInt);
 

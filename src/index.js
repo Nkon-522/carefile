@@ -1,3 +1,4 @@
+import "./env/index.js";
 import express from "express";
 import alergiaRouter from  "./router/alergia.js";
 
