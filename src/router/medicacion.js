@@ -43,7 +43,7 @@ router.get("/:id_medicacion", async (req, res) => {
 });
 
 async function updateMedicacionFields(idMedicacion, titulo) {
-    const descripcion_chat_completion = await openai.createChatCompletion({
+    /*const descripcion_chat_completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo-16k",
         temperature: 0.5,
         messages: [
@@ -81,7 +81,15 @@ async function updateMedicacionFields(idMedicacion, titulo) {
             { role: "user", content: `Please just respond with the precautions of this medicine in this language code es-MX: ${titulo}` }
         ],
     });
-    const precauciones = precauciones_chat_completion.data.choices[0]["message"]["content"];
+    const precauciones = precauciones_chat_completion.data.choices[0]["message"]["content"];*/
+    
+    const descripcion = "El paracetamol es un analgésico y antipirético utilizado comúnmente para aliviar el dolor y reducir la fiebre."
+
+    const indicaciones = "Panadol se utiliza para el alivio temporal de dolores leves a moderados, como dolores de cabeza, dolores musculares, dolores de espalda, dolores menstruales y dolores asociados a resfriados y gripe. También se utiliza para reducir la fiebre en caso de fiebre leve a moderada.";
+
+    const modoUso = "Panadol está disponible en forma de tabletas o cápsulas para administración oral. Las dosis recomendadas y la frecuencia de administración pueden variar según la edad, el peso y la condición médica del paciente. Es importante seguir las instrucciones proporcionadas por el médico o las indicaciones en el empaque del medicamento.";
+
+    const precauciones = "* No exceder la dosis recomendada para evitar...";
 
     try {
         const queryString = "UPDATE medicacion SET descripcion = $1, indicaciones = $2, modo_uso = $3, precauciones = $4 WHERE id_medicacion = $5";
