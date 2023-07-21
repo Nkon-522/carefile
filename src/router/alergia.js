@@ -21,14 +21,22 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/:id", (req, res) => {
-    const query = req.query;
-    console.log(query);
+router.get("/:id_alergia", async (req, res) => {
     const params = req.params;
-    console.log(params);
-    const id = params["id"];
-    console.log(id);
-    res.send("Hola desde alergias con id " + id);
+    const idAlergia = params["id_alergia"];
+    if (!idAlergia) {
+        return res.status(404).send("Falta el id_alergia");
+    }
+    try {
+        const queryString = "SELECT id_alergia, titulo, tipo, descripcion, sintomas, tratamiento FROM alergia WHERE id_alergia = $1";
+        const query = await pool.query(queryString, [idAlergia]);
+        const alergia = query.rows[0] || {};
+        const jsonResponse = alergia;
+        return res.status(200).json(jsonResponse);
+    } catch(error) {
+        console.log(error);
+        return res.status(500).send("Error en la base de datos");
+    }
 });
 
 export default router;

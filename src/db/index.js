@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+pg.types.setTypeParser(20, parseInt);
+
 const DB = process.env.DB;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
