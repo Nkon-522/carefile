@@ -1,6 +1,6 @@
 import express from "express";
-import { pool } from "../db/index.js";
-import { openai } from "../openai/index.js"
+import { pool } from "../db/db.js";
+import { openai } from "../openai/openai.js"
 
 const router = express.Router();
 
@@ -17,6 +17,26 @@ router.get("/", async (req, res) => {
         const jsonResponse = {"data": alergiasList};
         return res.status(200).json(jsonResponse);
     } catch (error) {
+        console.log(error);
+        return res.status(500).send("Error en la base de datos");
+    }
+});
+
+
+
+router.get("/:id_alergia", async (req, res) => {
+    const params = req.params;
+    const idAlergia = params["id_alergia"];
+    if (!idAlergia) {
+        return res.status(400).send("Falta el id_alergia");
+    }
+    try {
+        const queryString = "SELECT id_alergia, titulo, tipo, descripcion, sintomas, tratamiento FROM alergia WHERE id_alergia = $1";
+        const query = await pool.query(queryString, [idAlergia]);
+        const alergia = query.rows[0] || {};
+        const jsonResponse = alergia;
+        return res.status(200).json(jsonResponse);
+    } catch(error) {
         console.log(error);
         return res.status(500).send("Error en la base de datos");
     }
@@ -86,24 +106,6 @@ router.post("/", async (req, res) => {
         const jsonResponse = idAlergia;
         return res.status(200).json(jsonResponse);
     } catch (error) {
-        console.log(error);
-        return res.status(500).send("Error en la base de datos");
-    }
-});
-
-router.get("/:id_alergia", async (req, res) => {
-    const params = req.params;
-    const idAlergia = params["id_alergia"];
-    if (!idAlergia) {
-        return res.status(400).send("Falta el id_alergia");
-    }
-    try {
-        const queryString = "SELECT id_alergia, titulo, tipo, descripcion, sintomas, tratamiento FROM alergia WHERE id_alergia = $1";
-        const query = await pool.query(queryString, [idAlergia]);
-        const alergia = query.rows[0] || {};
-        const jsonResponse = alergia;
-        return res.status(200).json(jsonResponse);
-    } catch(error) {
         console.log(error);
         return res.status(500).send("Error en la base de datos");
     }
