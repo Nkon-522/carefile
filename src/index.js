@@ -7,10 +7,12 @@ import recetaRouter from "./router/receta.js";
 import padecimientoRouter from "./router/padecimiento.js";
 import cirugiaRouter from "./router/cirugia.js";
 import loginRouter from "./router/login.js";
+import registerRouter from "./router/register.js";
 
 const app = express();
 app.use(express.json());
 
+app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/alergia", alergiaRouter);
 app.use("/medicacion", medicacionRouter);
