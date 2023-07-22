@@ -1,5 +1,6 @@
 import express from "express";  
 import {pool} from "../db/db.js";
+import {s3} from "../aws/aws.js";
 
 const router = express.Router();
 
@@ -31,7 +32,15 @@ router.get("/:id_receta", async (req, res) => {
         const queryString = "SELECT id_receta, id_usuario, descripcion, fecha_inicio, medicamento, cantidad_medicamento, unidad, instruccion, detalle_usuario, dosis, cada, via, dias, cantidad, informacion_adicional, firma_medico, numero_licencia, path_image FROM receta WHERE id_receta = $1";
         const query = await pool.query(queryString, [idReceta]);
         const receta = query.rows[0] || {};
-        const jsonResponse = receta;
+        let jsonResponse = receta;
+        if (receta["path_image"]) {
+            const params = {
+                Bucket: "carefileone-recetas",
+                Key: receta["path_image"],
+            };
+            const signedUrl = await s3.getSignedUrlPromise("getObject", params);
+            jsonResponse["presigned_url"] = signedUrl;
+        }
         return res.status(200).json(jsonResponse);
     } catch(error) {
         console.log(error);
