@@ -6,10 +6,12 @@ import usuarioRouter from "./router/usuario.js"
 import recetaRouter from "./router/receta.js";
 import padecimientoRouter from "./router/padecimiento.js";
 import cirugiaRouter from "./router/cirugia.js";
+import loginRouter from "./router/login.js";
 
 const app = express();
 app.use(express.json());
 
+app.use("/login", loginRouter);
 app.use("/alergia", alergiaRouter);
 app.use("/medicacion", medicacionRouter);
 app.use("/usuario", usuarioRouter);
