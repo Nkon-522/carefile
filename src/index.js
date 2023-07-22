@@ -9,11 +9,15 @@ import cirugiaRouter from "./router/cirugia.js";
 import loginRouter from "./router/login.js";
 import registerRouter from "./router/register.js";
 
+import { verifyToken } from "./middleware/auth.js";
+
 const app = express();
 app.use(express.json());
 
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+
+app.use(verifyToken);
 app.use("/alergia", alergiaRouter);
 app.use("/medicacion", medicacionRouter);
 app.use("/usuario", usuarioRouter);
