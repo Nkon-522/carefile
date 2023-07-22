@@ -5,6 +5,7 @@ import medicacionRouter from "./router/medicacion.js";
 import usuarioRouter from "./router/usuario.js"
 import recetaRouter from "./router/receta.js";
 import padecimientoRouter from "./router/padecimiento.js";
+import cirugiaRouter from "./router/cirugia.js";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use("/medicacion", medicacionRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/receta", recetaRouter);
 app.use("/padecimiento", padecimientoRouter);
+app.use("/cirugia", cirugiaRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello World");

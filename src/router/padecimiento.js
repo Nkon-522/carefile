@@ -70,7 +70,7 @@ router.post("/", async (req, res) => {
         const queryString = "INSERT INTO padecimiento (id_usuario, titulo, tipo) VALUES ($1, $2, $3) RETURNING id_padecimiento";
         const query = await pool.query(queryString, [id_usuario, titulo, tipo]);
         const idPadecimiento = query.rows[0] || {};
-        await updatePadecimientoFields(idPadecimiento.id_padecimiento, titulo);
+        updatePadecimientoFields(idPadecimiento.id_padecimiento, titulo);
         const jsonResponse = idPadecimiento;
         return res.status(200).json(jsonResponse);
     } catch(error) {
