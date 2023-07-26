@@ -1,6 +1,7 @@
 import express from "express";
 import { pool } from "../db/db.js";
 import { openai } from "../openai/openai.js"
+import { Medicina } from "../mongodb/mongodb.js";
 
 const router = express.Router();
 
@@ -22,7 +23,21 @@ router.get("/", async (req, res) => {
     }
 });
 
-
+router.get("/search", async (req, res) => {
+    const query = req.query;
+    const nombreMedicina = query["nombre_medicina"];
+    if (!nombreMedicina) {
+        return res.status(400).send("Falta el nombre_medicina");
+    }
+    try {
+        const medicina = await Medicina.findOne({nombre: nombreMedicina});
+        const jsonResponse = medicina || {};
+        return res.status(200).json(jsonResponse);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Error en la base de datos");
+    }
+});
 
 router.get("/:id_medicacion", async (req, res) => {
     const params = req.params;
@@ -128,5 +143,6 @@ router.post("/", async (req, res) => {
         return res.status(500).send("Error en la base de datos");
     }
 });
+
 
 export default router;

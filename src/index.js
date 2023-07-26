@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 
-app.use(verifyToken);
+//app.use(verifyToken);
 app.use("/alergia", alergiaRouter);
 app.use("/medicacion", medicacionRouter);
 app.use("/usuario", usuarioRouter);
