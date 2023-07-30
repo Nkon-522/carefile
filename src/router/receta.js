@@ -35,7 +35,7 @@ router.get("/:id_receta", async (req, res) => {
         let jsonResponse = receta;
         if (receta["path_image"]) {
             const params = {
-                Bucket: "carefileone-recetas",
+                Bucket: process.env.AWS_S3_BUCKET_NAME,
                 Key: receta["path_image"],
             };
             const signedUrl = await s3.getSignedUrlPromise("getObject", params);
@@ -72,8 +72,6 @@ router.post("/", async (req, res) => {
     if (required_fields.some(field => field === undefined)) {
         return res.status(400).send("Faltan campos requeridos");
     }
-
-    //fecha_inicio = new Date(fecha_inicio);
 
     try {
         const queryString = "INSERT INTO receta (id_usuario, descripcion, fecha_inicio, medicamento, cantidad_medicamento, unidad, instruccion, detalle_usuario, dosis, cada, via, dias, cantidad, informacion_adicional, firma_medico, numero_licencia, path_image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12,$13,$14,$15,$16,$17) RETURNING id_receta";

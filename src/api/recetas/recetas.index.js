@@ -1,0 +1,1 @@
+export { recetasRouter } from "./recetas.routes.js";

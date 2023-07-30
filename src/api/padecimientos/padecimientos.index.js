@@ -1,0 +1,1 @@
+export { padecimientosRouter } from "./padecimientos.routes.js";

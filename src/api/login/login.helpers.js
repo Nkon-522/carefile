@@ -1,0 +1,1 @@
+export const getUsuarioQuery = "SELECT id_usuario, correo, nombres, contrasena FROM usuario WHERE dni = $1";

@@ -1,0 +1,1 @@
+export { medicacionesRouter } from "./medicaciones.routes.js";

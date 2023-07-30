@@ -58,45 +58,6 @@ router.get("/:id_medicacion", async (req, res) => {
 });
 
 async function updateMedicacionFields(idMedicacion, titulo) {
-    /*const descripcion_chat_completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo-16k",
-        temperature: 0.5,
-        messages: [
-            { role: "system", content: "You are a helpful assistant."},
-            { role: "user", content: `Please just provide a description of this medicine in less than 200 words and in this language code es-MX: ${titulo}` }
-        ],
-    });
-    const descripcion = descripcion_chat_completion.data.choices[0]["message"]["content"];
-
-    const indicaciones_chat_completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo-16k",
-        temperature: 0.5,
-        messages: [
-            { role: "system", content: "You are a helpful assistant."},
-            { role: "user", content: `Please just respond with the indications of this medicine in this language code es-MX: ${titulo}` }
-        ],
-    });
-    const indicaciones = indicaciones_chat_completion.data.choices[0]["message"]["content"];
-
-    const modoUso_chat_completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo-16k",
-        temperature: 0.5,
-        messages: [
-            { role: "system", content: "You are a helpful assistant."},
-            { role: "user", content: `Please just respond with the way of using this medicine in this language code es-MX: ${titulo}` }
-        ],
-    });
-    const modoUso = modoUso_chat_completion.data.choices[0]["message"]["content"];
-
-    const precauciones_chat_completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo-16k",
-        temperature: 0.5,
-        messages: [
-            { role: "system", content: "You are a helpful assistant."},
-            { role: "user", content: `Please just respond with the precautions of this medicine in this language code es-MX: ${titulo}` }
-        ],
-    });
-    const precauciones = precauciones_chat_completion.data.choices[0]["message"]["content"];*/
     
     const descripcion = "El paracetamol es un analgésico y antipirético utilizado comúnmente para aliviar el dolor y reducir la fiebre."
 
@@ -110,10 +71,8 @@ async function updateMedicacionFields(idMedicacion, titulo) {
         const queryString = "UPDATE medicacion SET descripcion = $1, indicaciones = $2, modo_uso = $3, precauciones = $4 WHERE id_medicacion = $5";
         const query = await pool.query(queryString, [descripcion, indicaciones, modoUso, precauciones, idMedicacion]);
         return query;
-        // return res.status(200).json(jsonResponse);
     } catch (error) {
         return console.log(error);
-        // return res.status(500).send("Error en la base de datos");
     }
 }
 

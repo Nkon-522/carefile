@@ -1,0 +1,1 @@
+export const createUsuarioQuery = "INSERT INTO usuario (nombres, apellidos, dia_nacimiento, mes_nacimiento, ano_nacimiento, correo, dni, contrasena, telefono_emergencias, direccion) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id_usuario, correo, nombres";
