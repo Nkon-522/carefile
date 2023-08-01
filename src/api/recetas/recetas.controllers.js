@@ -26,6 +26,10 @@ export const getReceta = async (req, res) => {
         if (receta["path_image"]) {
             jsonResponse["presigned_url"] = await generateRecetaImageUrl(receta["path_image"]);
         }
+        const nombre_usuario_query = await queryExecution("SELECT nombres, apellidos FROM usuarios WHERE id_usuario = $1", [receta["id_usuario"]]);
+        const nombre_usuario = nombre_usuario_query.rows[0] || {};
+        jsonResponse["nombres"] = nombre_usuario["nombres"];
+        jsonResponse["apellidos"] = nombre_usuario["apellidos"];
         return res.status(200).json(jsonResponse);
     } catch(error) {
         console.log(error);
