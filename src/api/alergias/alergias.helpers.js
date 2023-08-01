@@ -42,22 +42,22 @@ export async function updateAlergiaFields(idAlergia, titulo) {
 
     const descripcion = `La alergia a Apis melifera, también conocida como alergia a las abejas, es una reacción alérgica desencadenada por la picadura de abejas melíferas. Esta especie de abeja es comúnmente encontrada en México y en muchas otras partes del mundo.
 
-    Cuando una persona alérgica a Apis melifera es picada, su sistema inmunológico reacciona de manera exagerada a las proteínas presentes en el veneno de la abeja. Esto puede desencadenar una serie de síntomas, que van desde leves a potencialmente mortales.
+Cuando una persona alérgica a Apis melifera es picada, su sistema inmunológico reacciona de manera exagerada a las proteínas presentes en el veneno de la abeja. Esto puede desencadenar una serie de síntomas, que van desde leves a potencialmente mortales.
 
-    Los síntomas comunes de esta alergia incluyen enrojecimiento, hinchazón y picazón en el área de la picadura. Además, pueden presentarse síntomas más graves como dificultad para respirar, hinchazón en la garganta, mareos, náuseas y vómitos. En casos extremos, una picadura de abeja puede provocar una reacción alérgica grave llamada anafilaxia, que puede ser potencialmente mortal si no se trata de inmediato.
+Los síntomas comunes de esta alergia incluyen enrojecimiento, hinchazón y picazón en el área de la picadura. Además, pueden presentarse síntomas más graves como dificultad para respirar, hinchazón en la garganta, mareos, náuseas y vómitos. En casos extremos, una picadura de abeja puede provocar una reacción alérgica grave llamada anafilaxia, que puede ser potencialmente mortal si no se trata de inmediato.
 
-    Si se sospecha una alergia a Apis melifera, es importante buscar atención médica de inmediato. El médico puede realizar pruebas de alergia para confirmar el diagnóstico y ofrecer recomendaciones sobre cómo evitar futuras picaduras y cómo manejar los síntomas en caso de exposición. En algunos casos, puede ser necesario llevar consigo un autoinyector de epinefrina para tratar una reacción alérgica severa.`;
+Si se sospecha una alergia a Apis melifera, es importante buscar atención médica de inmediato. El médico puede realizar pruebas de alergia para confirmar el diagnóstico y ofrecer recomendaciones sobre cómo evitar futuras picaduras y cómo manejar los síntomas en caso de exposición. En algunos casos, puede ser necesario llevar consigo un autoinyector de epinefrina para tratar una reacción alérgica severa.`;
 
-    const sintomas = `  - Picazón en la piel
-                        - Enrojecimiento y hinchazón
-                        - Estornudos y secreción nasal
-                        - Tos y dificultad para respirar
-                        - Ojos llorosos y con picazón
-                        - Ronchas y urticaria en la piel
-                        - Náuseas y vómitos
-                        - Mareos y desmayos
-                        - Reacciones graves como dificultad para respirar y pérdida del conocimiento`;
-                        
+    const sintomas = `- Picazón en la piel
+- Enrojecimiento y hinchazón
+- Estornudos y secreción nasal
+- Tos y dificultad para respirar
+- Ojos llorosos y con picazón
+- Ronchas y urticaria en la piel
+- Náuseas y vómitos
+- Mareos y desmayos
+- Reacciones graves como dificultad para respirar y pérdida del conocimiento`;
+
     const tratamiento = `1. Evitar el contacto con las abejas y sus productos, como miel o cera de abejas.
 2. Usar ropa protectora al estar al aire libre, como mangas largas y pantalones.
 3. Utilizar repelentes de insectos que sean seguros para personas alérgicas.
