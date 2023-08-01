@@ -1,3 +1,5 @@
+import { pool } from "../../db/db.js";
+
 export const getMedicacionesQuery = "SELECT id_medicacion, titulo, tipo FROM medicacion WHERE id_usuario = $1 order by titulo asc";
 
 export const getMedicacionQuery = "SELECT id_medicacion, titulo, tipo, descripcion, indicaciones, modo_uso, precauciones FROM medicacion WHERE id_medicacion = $1";
