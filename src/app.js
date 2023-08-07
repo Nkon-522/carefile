@@ -9,11 +9,13 @@ import { cirugiasRouter } from "./api/cirugias/cirugias.index.js";
 import { loginRouter } from "./api/login/login.index.js";
 import { registerRouter } from "./api/register/register.index.js";
 
+import { checkRouter } from "./api/check/check.index.js";
 import { verifyToken } from "./middleware/auth.js";
 
 const app = express();
 app.use(express.json());
 
+app.use("/check", checkRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 
