@@ -15,6 +15,9 @@ export async function updatePadecimientoFields(idPadecimiento, titulo) {
         const query = await pool.query(queryString, [descripcion, sintomas, tratamiento, idPadecimiento]);
         return query;
     } catch(error) {
-        return console.log(error);
+        console.log(error);
+        return { 
+            "error": "Error en la base de datos"
+        };
     }
 }

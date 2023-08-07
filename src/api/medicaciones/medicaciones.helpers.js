@@ -21,7 +21,10 @@ export async function updateMedicacionFields(idMedicacion, titulo) {
         const query = await pool.query(queryString, [descripcion, indicaciones, modoUso, precauciones, idMedicacion]);
         return query;
     } catch (error) {
-        return console.log(error);
+        console.log(error);
+        return { 
+            "error": "Error en la base de datos"
+        };
     }
 }
 

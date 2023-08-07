@@ -74,7 +74,8 @@ Si se sospecha una alergia a Apis melifera, es importante buscar atención médi
         // return res.status(200).json(jsonResponse);
     } catch (error) {
         console.log(error);
-        return "Error en la base de datos";
-        // return res.status(500).send("Error en la base de datos");
+        return { 
+            "error": "Error en la base de datos"
+        };
     }
 }

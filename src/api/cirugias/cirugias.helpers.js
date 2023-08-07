@@ -16,6 +16,9 @@ export async function updateCirugiaFields(idCirugia, titulo) {
         const query = await pool.query(queryString, [descripcion, recuperacion, recomendaciones, idCirugia]);
         return query;
     } catch(error) {
-        return console.log(error);
+        console.log(error);
+        return { 
+            "error": "Error en la base de datos"
+        };
     }
 }
