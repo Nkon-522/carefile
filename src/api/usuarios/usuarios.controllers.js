@@ -1,5 +1,5 @@
 import { queryExecution } from "../../utils/queryExecution.helpers.js";
-
+import client from "../../redis/redis.js";
 import { 
     getUsuarioQuery, 
     getMedicacionesQuery, 
@@ -9,6 +9,11 @@ import {
 } from "./usuarios.helpers.js";
 
 export const getUsuario = async (req, res) => {
+    const redisUser = await client.get(req.query["id_usuario"]);
+    if (redisUser) {
+        return res.status(200).json(JSON.parse(redisUser));
+    }
+
     try {
         const userQuery = await queryExecution(getUsuarioQuery, res.locals.getUsuarioParams);
         const userInfo = userQuery.rows[0] || {};
@@ -30,13 +35,8 @@ export const getUsuario = async (req, res) => {
         jsonResponse["medicacion"] = medicacionesList;
         jsonResponse["padecimientos"] = padecimientosList;
         jsonResponse["cirugias"] = cirugiasList;
-        /*jsonResponse["padecimientos"] = 
-        [
-            {"titulo":"diabetes"}, { "titulo":"artritis"}
-        ];
-        jsonResponse["cirugias"] = [
-            {"titulo":"apendicectomia"}, {"titulo":"lasik"}
-        ];*/
+
+        await client.set(req.query["id_usuario"], JSON.stringify(jsonResponse));
 
         return res.status(200).json(jsonResponse);
     } catch (error) {

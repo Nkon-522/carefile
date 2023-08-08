@@ -4,6 +4,7 @@ beforeAll(async () => {
     resources.getAppInstance();
     resources.getPoolInstance();
     resources.getMongooseInstance();
+    resources.getRedisInstance();
 });
 
 afterAll(async () => {
@@ -12,5 +13,8 @@ afterAll(async () => {
     }
     if (resources.getMongooseInstance() !== null) {
         await resources.getMongooseInstance().connection.close();
+    }
+    if (resources.getRedisInstance() !== null) {
+        await resources.getRedisInstance().disconnect();
     }
 });

@@ -11,9 +11,12 @@ import { registerRouter } from "./api/register/register.index.js";
 
 import { checkRouter } from "./api/check/check.index.js";
 import { verifyToken } from "./middleware/auth.js";
+import { logRequest } from "./middleware/logger.js";
 
 const app = express();
 app.use(express.json());
+
+app.use(logRequest);
 
 app.use("/check", checkRouter);
 app.use("/register", registerRouter);
